@@ -1,0 +1,20 @@
+== spMARKS
+
+=== A Web 2.0 Bookmark Management System
+
+This is an online bookmark management system using PHP and Smarty Template
+Engine. MySQL is the database of choice.
+
+The user interface is based on completely themeable. It is based on the
+Prototype JavaScript library. But naturally, the default theme is based
+script.aculo.us.
+
+== Installation
+
+See the INSTALL file for installation steps.
+
+== License
+
+spMARKS is distributed under the terms of the MIT License. See the included
+LICENSE file for details.
+

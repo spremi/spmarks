@@ -36,6 +36,13 @@ defined ('__SP__MARKS__') or die (
     ) ;
 
 
+/**
+ *  This class implements the database functions required by the application.
+ *
+ *  @package    spMARKS
+ *  @author     Sanjeev Premi
+ *  @version    1.0
+ */
 class CSpDatabase
 {
     /*

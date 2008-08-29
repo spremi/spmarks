@@ -7,7 +7,7 @@ Engine. MySQL is the database of choice.
 
 The user interface is based on completely themeable. It is based on the
 Prototype JavaScript library. But naturally, the default theme is based
-script.aculo.us.
+on script.aculo.us.
 
 == Installation
 

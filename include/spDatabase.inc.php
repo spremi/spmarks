@@ -86,7 +86,7 @@ class CSpDatabase
     private $_trace = null ;
 
 
-    function CSpDB ()
+    function CSpDatabase ()
     {
     }
 

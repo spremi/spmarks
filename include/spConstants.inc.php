@@ -65,6 +65,8 @@ define ('BROWSER_OTHER',    'other') ;
  */
 define ('ACT_NONE',         '') ;
 
+define ('ACT_TRACE',        'trace') ;
+
 define ('ACT_BMARK_LST',    'bm_lst') ;
 define ('ACT_BMARK_ADD',    'bm_add') ;
 define ('ACT_BMARK_MOD',    'bm_mod') ;
@@ -80,5 +82,10 @@ define ('ACT_USER_ADD',     'usr_add') ;
 define ('ACT_USER_MOD',     'usr_mod') ;
 define ('ACT_USER_DEL',     'usr_del') ;
 
+/**
+ *  About the author
+ */
+define ('__AUTHOR_NAME',    'Sanjeev Premi') ;
+define ('__AUTHOR_EMAIL',   'spremi@ymail.com') ;
 ?>
 

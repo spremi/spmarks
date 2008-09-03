@@ -54,21 +54,45 @@ class CSpTrace
     private static $_instance = null ;
 
     /**
+     *  Count of the log statements.
+     */
+    private static $_count = 0 ;
+
+    /**
+     *  Threshold to maintain trace history.
+     *  TBD: Not yet implemented.
+     */
+    private static $_threshold = 0 ;
+
+    /**
      *  An array that stores the trace statements until it is flushed.
      */
-    static $cache = array () ;
+    private static $_cache = array () ;
+
 
     /*
      *  Restrict instantiation
      */
     private function __construct ()
     {
+        if (isset ($_SESSION ['TRACE']))
+        {
+            self::_loadSession () ;
+        }
+    }
+
+    /*
+     *  Save members in session variables before destruction.
+     */
+    public function __destruct ()
+    {
+        self::_saveSession () ;
     }
 
     /*
      *  Restrict object cloning
      */
-    protected function __clone ()
+    private function __clone ()
     {
     }
 
@@ -89,9 +113,20 @@ class CSpTrace
      */
     static function add ($str)
     {
-	// print "... " . $str . "<br />" ;
+        // print "... [" . self::$_count . "] " . $str . "<br />" ;
 
-        self::$cache [] = $str ;
+        self::$_cache[] = $str ;
+        self::$_count++ ;
+    }
+
+    /**
+     *  Returns count of trace statements in the cache
+     */
+    public function count ()
+    {
+        $num = self::$_count ;
+
+        return $num ;
     }
 
     /**
@@ -99,7 +134,7 @@ class CSpTrace
      */
     static function export ()
     {
-        $arr = self::$cache ;
+        $arr = self::$_cache ;
 
         return $arr ;
     }
@@ -109,7 +144,45 @@ class CSpTrace
      */
     static function flush ()
     {
-        self::$cache = array () ;
+        self::$_cache = array () ;
+        self::$_count = 0 ;
+    }
+
+    /**
+     *  Save the state of this singleton object in session variables.
+     */
+    private static function _saveSession ()
+    {
+        if (empty ($_SESSION ['TRACE']))
+        {
+            $_SESSION ['TRACE'] = true ;
+
+            $_SESSION [__CLASS__ . '_count'] = self::$_count ;
+            $_SESSION [__CLASS__ . '_cache'] = self::$_cache ;
+        }
+    }
+
+    /**
+     *  Restore the state of this singleton object from session variables.
+     */
+    private static function _loadSession ()
+    {
+        self::$_count = $_SESSION [__CLASS__ . '_count'] ;
+        self::$_cache = $_SESSION [__CLASS__ . '_cache'] ;
+
+        /*
+         *  Clear session variables to ensure that this function is
+         *  not called again.
+         */
+        unset ($_SESSION [__CLASS__ . '_count']) ;
+        unset ($_SESSION [__CLASS__ . '_cache']) ;
+
+        unset ($_SESSION ['TRACE']) ;
+
+        /*
+         *  Add divider between sessions
+         */
+        self::$_cache [] = "::::::::::::::::::::::::::::::::::::::::" ;
     }
 }
 

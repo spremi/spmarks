@@ -38,7 +38,6 @@ header ("Pragma: no-cache") ;
 
 define ('__SP__MARKS__',    1) ;
 
-
 //  ============================================================================
 //  Is this is a 'working' installation?
 //  ============================================================================
@@ -62,44 +61,35 @@ require_once ('./include/spApplication.inc.php') ;
 
 require_once (SMARTY_LIBS . 'Smarty.class.php') ;
 
+
 //  ============================================================================
 //  Begin
 //  ============================================================================
 
-//  Do not start session until the user authentication is implemented.
-//  $_SESSION variables seem to work as good as $GLOBALS.
-//
-//session_start ();
+session_start ();
+
+//  ----------------------------------------------------------------------------
+//  Initialize Globals
+//  ----------------------------------------------------------------------------
+$GLOBALS ['Trace'] = null ;
+$GLOBALS ['App']   = null ;
+
+$GLOBALS ['arrCategories']  = array () ;
+$GLOBALS ['CurCategory']    = 0 ;
+$GLOBALS ['ArrBookmarks']   = array () ;
 
 //  ----------------------------------------------------------------------------
 //  Instantiate the trace object
 //  ----------------------------------------------------------------------------
-if ((defined ('__SP_TRACE')) && empty ($_SESSION ['TRACE'])) {
-    $_SESSION ['TRACE'] = CSpTrace::getInstance () ;
-}
+$GLOBALS ['Trace'] = CSpTrace::getInstance () ;
 
-CSpTrace::Add ('Begin') ;
-
-//  ----------------------------------------------------------------------------
-//  List of categories.
-//  ----------------------------------------------------------------------------
-if (empty ($_SESSION ['arrCategories'])) {
-    $_SESSION ['arrCategories'] = array () ;
-}
+$GLOBALS ['Trace']->Add ('Begin') ;
 
 //  ----------------------------------------------------------------------------
 //  Default category ID (Can be defined via configuration)
 //  ----------------------------------------------------------------------------
-if (empty ($_SESSION ['currCategory'])) {
-    $_SESSION ['curCategory'] = 0 ;
-}
-
-//  ----------------------------------------------------------------------------
-//  List of bookmarks
-//  ----------------------------------------------------------------------------
-if (empty ($_SESSION ['arrBookmarks'])) {
-    $_SESSION ['arrBookmarks'] = array() ;
-}
+$GLOBALS ['Trace']->Add ('Initialize curCategory') ;
+$GLOBALS ['CurCategory'] = 0 ;
 
 //  ----------------------------------------------------------------------------
 //  Initialize theme
@@ -114,11 +104,12 @@ else {
 //  ----------------------------------------------------------------------------
 //  Create new application object
 //  ----------------------------------------------------------------------------
-if (empty ($_SESSION ['App'])) {
-    $_SESSION ['App'] =& new CSpApplication ;
+$GLOBALS ['Trace']->Add ('Create application object') ;
 
-    $_SESSION ['App']->init () ;
-}
+$GLOBALS ['App'] =& new CSpApplication () ;
+
+$GLOBALS ['App']->init () ;
+$GLOBALS ['App']->openDB () ;
 
 //  ----------------------------------------------------------------------------
 //  Determine the requested action.
@@ -126,17 +117,15 @@ if (empty ($_SESSION ['App'])) {
 $choiceAction = '' ;
 $choicePost   = false ;
 
-CSpTrace::Add ('Process') ;
+$GLOBALS ['Trace']->Add ('Process') ;
 
 if (isset ($_GET ['act'])) {
     $choiceAction = $_GET ['act'] ;
 
-    CSpTrace::Add ('Action : ' . $choiceAction) ;
+    $GLOBALS ['Trace']->Add ('Action : ' . $choiceAction) ;
 }
 else {
-    $choiceAction = ACT_BMARK_LST ;
-
-    CSpTrace::Add ('Action not specified. Use default.') ;
+    $GLOBALS ['Trace']->Add ('No action specified.') ;
 }
 
 if (isset($_POST ['form'])) {
@@ -146,13 +135,13 @@ if (isset($_POST ['form'])) {
 //  ----------------------------------------------------------------------------
 //  Perform desired action
 //  ----------------------------------------------------------------------------
-$_SESSION ['App']->act ($choiceAction, $choicePost) ;
+$GLOBALS ['App']->act ($choiceAction, $choicePost) ;
 
 //  ============================================================================
 //  End
 //  ============================================================================
-$_SESSION ['App']->close () ;
+$GLOBALS ['App']->closeDB () ;
 
-CSpTrace::Add ('Done') ;
+$GLOBALS ['Trace']->Add ('End') ;
 ?>
 

@@ -62,6 +62,11 @@ class CSpApplication
     private $_theme = null ;
 
     /**
+     *  Current action (thru GET/POST)
+     */
+    private $_action = "" ;
+
+    /**
      *  Result of AJAX command - success / failure.
      */
     private $_ajaxResult = null ;
@@ -160,6 +165,8 @@ class CSpApplication
         $this->_theme->assignVar  ('trace', $this->_trace) ;
         $this->_theme->assignVar  ('cfg',   $this->_cfg) ;
         $this->_theme->assignVar  ('theme', $this->_theme) ;
+
+        $this->_theme->assignVar  ('action', $this->_action) ;
 
         $this->_theme->assignVar  ('arrCategories', $GLOBALS ['arrCategories']) ;
         $this->_theme->assignVar  ('arrBookmarks',  $GLOBALS ['arrBookmarks']) ;

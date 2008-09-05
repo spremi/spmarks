@@ -87,5 +87,47 @@ define ('ACT_USER_DEL',     'usr_del') ;
  */
 define ('__AUTHOR_NAME',    'Sanjeev Premi') ;
 define ('__AUTHOR_EMAIL',   'spremi@ymail.com') ;
+
+
+/**
+ *  Messages corresponding to successful execution.
+ */
+$GLOBALS ['MsgSuccess'] = array (
+            ACT_BMARK_LST => 'Successfully listed the bookmarks.',
+            ACT_BMARK_ADD => 'Successfully added new bookmark.',
+            ACT_BMARK_MOD => 'Successfully updated the bookmark.',
+            ACT_BMARK_DEL => 'Successfully deleted the bookmark.',
+            
+            ACT_BMCAT_LST => 'Successfully listed the categories.',
+            ACT_BMCAT_ADD => 'Successfully added new category.',
+            ACT_BMCAT_MOD => 'Successfully updated the category.',
+            ACT_BMCAT_DEL => 'Successfully deleted the category.',
+            
+            ACT_USER_LST  => 'Successfully listed the users.',
+            ACT_USER_ADD  => 'Successfully added new user.',
+            ACT_USER_MOD  => 'Successfully updated the user.',
+            ACT_USER_DEL  => 'Successfully deleted the user.',
+    ) ;
+
+/**
+ *  Messages corresponding to unsuccessful execution.
+ */
+$GLOBALS ['MsgFailure'] = array (
+            ACT_BMARK_LST => 'Unable to list the bookmarks.',
+            ACT_BMARK_ADD => 'Unable to add new bookmark.',
+            ACT_BMARK_MOD => 'Unable to update the bookmark.',
+            ACT_BMARK_DEL => 'Unable to delete the bookmark.',
+            
+            ACT_BMCAT_LST => 'Unable to list the categories.',
+            ACT_BMCAT_ADD => 'Unable to add new category.',
+            ACT_BMCAT_MOD => 'Unable to update the category.',
+            ACT_BMCAT_DEL => 'Unable to delete the category.',
+            
+            ACT_USER_LST  => 'Unable to list the users.',
+            ACT_USER_ADD  => 'Unable to add new user.',
+            ACT_USER_MOD  => 'Unable to update the user.',
+            ACT_USER_DEL  => 'Unable to delete the user.',
+    ) ;
+
 ?>
 

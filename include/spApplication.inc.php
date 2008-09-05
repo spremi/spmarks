@@ -169,6 +169,7 @@ class CSpApplication
         $this->_theme->assignVar  ('action', $this->_action) ;
 
         $this->_theme->assignVar  ('arrCategories', $GLOBALS ['arrCategories']) ;
+        $this->_theme->assignVar  ('curCategory',   $GLOBALS ['curCategory']) ;
         $this->_theme->assignVar  ('arrBookmarks',  $GLOBALS ['arrBookmarks']) ;
 
         /*
@@ -250,40 +251,56 @@ class CSpApplication
     {
         $this->addTrace (__FUNCTION__) ;
 
+        $this->_action = $act ;
+
         switch ($act)
         {
         case ACT_TRACE :
+            $this->addTrace ('Send application trace.') ;
+
             if ($this->trace != null) {
+                $this->_theme->render ('trace.tpl')  ;
+
                 $this->trace->flush () ;
             }
             break ;
 
         case ACT_BMARK_LST :
+            $this->_listBookmarks () ;
             break ;
 
         case ACT_BMARK_ADD :
-            break ;
-
         case ACT_BMARK_MOD :
-            break ;
-
         case ACT_BMARK_DEL :
+            $this->_editBookmark ($post) ;
             break ;
 
         case ACT_BMCAT_LST :
+            $this->_listCategories () ;
             break ;
 
         case ACT_BMCAT_ADD :
-            break ;
-
         case ACT_BMCAT_MOD :
-            break ;
-
         case ACT_BMCAT_DEL :
+            $this->_editCategory ($post) ;
             break ;
 
         default :
+            $this->_theme->render ('main.tpl')  ;
             break ;
+        }
+
+        if ($post) {
+            if ($this->_ajaxResult === true)
+            {
+                $this->_ajaxMessage = $GLOBALS ['MsgSuccess'][$this->_action] ;
+            }
+            else
+            {
+                $this->_ajaxMessage = $GLOBALS ['MsgFailure'][$this->_action] ;
+            }
+
+            $this->_theme->render ('result.tpl')  ;
         }
     }
 
@@ -294,6 +311,64 @@ class CSpApplication
     {
         if ((defined ('__SP_TRACE')) &&  ($this->_trace != null)) {
             $this->_trace->add ('CSpApplication::' . $str) ;
+        }
+    }
+
+    /*
+     *  List bookmarks
+     */
+    function _listBookmarks ()
+    {
+        require_once ('./include/spCategory.inc.php') ;
+        require_once ('./include/spBookmark.inc.php') ;
+
+        $result = listBookmarks ($this->_db) ;
+
+        $this->_theme->render ('bm_lst.tpl')  ;
+    }
+
+    /*
+     *  List categories
+     */
+    function _listCategories ()
+    {
+        require_once ('./include/spCategory.inc.php') ;
+
+        listCategories ($this->_db) ;
+
+        $this->_theme->render ('cat_lst.tpl')  ;
+    }
+
+    /*
+     *   Edit (add/modify/delete) a bookmark
+     */
+    function _editBookmark ($post, $act)
+    {
+        $retval = true ;
+
+        require_once ('./include/spCategory.inc.php') ;
+        require_once ('./include/spBookmark.inc.php') ;
+
+        if ($post) {
+            $this->_ajaxResult = editBookmark ($this->_db, $this->_action) ;
+        }
+        else {
+            $this->_theme->render ('bm_edit.tpl')  ;
+        }
+    }
+
+    /*
+     *  Edit (add/modify/delete) a category
+     */
+    function _editCategory ($post, $act)
+    {
+        $retval = true ;
+
+        require_once ('./include/spCategory.inc.php') ;
+            $this->_ajaxResult = editCategory ($this->_db, $this->_action) ;
+        }
+        else {
+            $this->_theme->render ('cat_edit.tpl')  ;
         }
     }
 }

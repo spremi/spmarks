@@ -161,8 +161,8 @@ class CSpApplication
         $this->_theme->assignVar  ('cfg',   $this->_cfg) ;
         $this->_theme->assignVar  ('theme', $this->_theme) ;
 
-        $this->_theme->assignVar  ('arrCategories', $_SESSION ['arrCategories']) ;
-        $this->_theme->assignVar  ('arrBookmarks',  $_SESSION ['arrBookmarks']) ;
+        $this->_theme->assignVar  ('arrCategories', $GLOBALS ['arrCategories']) ;
+        $this->_theme->assignVar  ('arrBookmarks',  $GLOBALS ['arrBookmarks']) ;
 
         /*
          *  AJAX variables

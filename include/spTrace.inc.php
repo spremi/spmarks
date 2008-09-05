@@ -40,7 +40,7 @@ defined ('__SP__MARKS__') or die (
 /**
  *  This class provides trace capabilities for the application.
  *  (The implementation follows the Singleton Pattern.)
- *
+ *  TBD: Link the implementation with definition of __SP_TRACE.
  *
  *  @package    spMARKS
  *  @author     Sanjeev Premi

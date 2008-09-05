@@ -285,7 +285,7 @@ class CSpApplication
      */
     function addTrace ($str)
     {
-        if ($this->_trace != null) {
+        if ((defined ('__SP_TRACE')) &&  ($this->_trace != null)) {
             $this->_trace->add ('CSpApplication::' . $str) ;
         }
     }

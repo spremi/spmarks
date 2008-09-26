@@ -159,8 +159,8 @@ class CSpTheme
         $this->addTrace ('Load information from the theme.') ;
         
         if (is_dir ('./themes/' . $theme)) {
-            if (is_file ('./themes/' . $theme . '/theme.inc.php')) {
-                require_once ('./themes/' . $theme . '/theme.inc.php') ;
+            if (is_file ('./themes/' . $theme . '/interface.php')) {
+                require_once ('./themes/' . $theme . '/interface.php') ;
             }
             else {
                 $retval = false ;

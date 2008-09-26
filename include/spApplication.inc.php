@@ -259,7 +259,7 @@ class CSpApplication
             $this->addTrace ('Send application trace.') ;
 
             if ($this->trace != null) {
-                $this->_theme->render ('trace.tpl')  ;
+                $this->_theme->render ('pgTrace.tpl')  ;
 
                 $this->trace->flush () ;
             }
@@ -286,7 +286,7 @@ class CSpApplication
             break ;
 
         default :
-            $this->_theme->render ('main.tpl')  ;
+            $this->_theme->render ('pgMain.tpl')  ;
             break ;
         }
 
@@ -300,7 +300,7 @@ class CSpApplication
                 $this->_ajaxMessage = $GLOBALS ['MsgFailure'][$this->_action] ;
             }
 
-            $this->_theme->render ('result.tpl')  ;
+            $this->_theme->render ('dlgResult.tpl')  ;
         }
     }
 
@@ -324,7 +324,7 @@ class CSpApplication
 
         $result = listBookmarks ($this->_db) ;
 
-        $this->_theme->render ('bm_lst.tpl')  ;
+        $this->_theme->render ('lstBm.tpl')  ;
     }
 
     /*
@@ -336,7 +336,7 @@ class CSpApplication
 
         listCategories ($this->_db) ;
 
-        $this->_theme->render ('cat_lst.tpl')  ;
+        $this->_theme->render ('lstCat.tpl')  ;
     }
 
     /*
@@ -353,7 +353,7 @@ class CSpApplication
             $this->_ajaxResult = editBookmark ($this->_db, $this->_action) ;
         }
         else {
-            $this->_theme->render ('bm_edit.tpl')  ;
+            $this->_theme->render ('dlgBmEdit.tpl')  ;
         }
     }
 
@@ -368,7 +368,7 @@ class CSpApplication
             $this->_ajaxResult = editCategory ($this->_db, $this->_action) ;
         }
         else {
-            $this->_theme->render ('cat_edit.tpl')  ;
+            $this->_theme->render ('dlgCatEdit.tpl')  ;
         }
     }
 }

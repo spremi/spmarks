@@ -177,26 +177,35 @@ function doForm (name)
  */
 function actionComplete (method, cmd, response)
 {
-    if (method == 'GET')
-    {
+    var container ;
+
+    if (method == 'GET') {
         switch (cmd)
         {
         case ACT_TRACE :
+            container = 'pgTrace' ;
             break ;
 
         case ACT_BMARK_LST :
+            container = 'pgBookmarks' ;
             break ;
 
         case ACT_BMCAT_LST :
+            container = 'pgCategories' ;
             break ;
 
         default :
+            container = 'pgDialog' ;
             break ;
         }
     }
-    else
-    {
+    else {
+        container = 'pgMessage' ;
     }
+
+    $(container).innerHTML = response ;
+
+    showContainer (container) ;
 }
 
 //  ============================================================================

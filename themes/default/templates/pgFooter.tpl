@@ -27,6 +27,7 @@
  *  ============================================================================
  *}
 <p>
-<a href="http://github.com/spremi/spmarks/tree">spMARKS</a> :
-Created by </i>Sanjeev Premi</i>.
+<a href="http://github.com/spremi/spmarks/tree">{$smarty.const.__APP_NAME}</a>
+<span class="version">(version {$smarty.const.__APP_VERSION})</span>
+<span class="author">Created by <i>Sanjeev Premi</i></span>.
 </p>

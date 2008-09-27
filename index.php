@@ -83,7 +83,7 @@ $GLOBALS ['ArrBookmarks']   = array () ;
 //  ----------------------------------------------------------------------------
 $GLOBALS ['Trace'] = CSpTrace::getInstance () ;
 
-$GLOBALS ['Trace']->Add ('Begin') ;
+$GLOBALS ['Trace']->Add ('Begin [' . date ('M d, Y h:i:s A') . ']') ;
 
 //  ----------------------------------------------------------------------------
 //  Default category ID (Can be defined via configuration)

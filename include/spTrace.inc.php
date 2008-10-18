@@ -71,7 +71,8 @@ class CSpTrace
 
 
     /*
-     *  Restrict instantiation
+     *  Restrict direct instantiation.
+     *  Restore the object state from the session.
      */
     private function __construct ()
     {

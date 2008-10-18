@@ -119,8 +119,8 @@ $choicePost   = false ;
 
 $GLOBALS ['Trace']->Add ('Process') ;
 
-if (isset ($_GET ['act'])) {
-    $choiceAction = $_GET ['act'] ;
+if (isset ($_REQUEST ['act'])) {
+    $choiceAction = $_REQUEST ['act'] ;
 
     $GLOBALS ['Trace']->Add ('Action : ' . $choiceAction) ;
 }

@@ -1,4 +1,3 @@
-<?php
 //  ============================================================================
 //  spMARKS
 //
@@ -28,57 +27,3 @@
 //  ============================================================================
 
 
-//  ============================================================================
-//  This file is 'required' in CSpTheme::init()
-//  ============================================================================
-
-
-//
-//  Prevent direct access
-//
-defined ('__SP__MARKS__') or die (
-    '<h1>NO ENTRY</h1>' .
-    '<p>You have tried to access restricted area.</p>'
-    ) ;
-
-//
-//  Name of the theme
-//
-$this->setName ('default') ;
-
-//
-//  Theme directory
-//
-//  Allows theme names to be creative - not bound by filesystem rules.
-//
-$this->setDir ('default') ;
-
-//
-//  Array of stylesheet(s) contained in the theme
-//
-$this->setStyleSheets (array (
-                                'style.css'
-                            )) ;
-
-//
-//  Array of 'external' javascripts to be included.
-//
-//  Allows you to re-use existing scripts on your webserver - avoids
-//  unnecessary copies - for better management.
-//
-//  Script name must be relative to base URL of the webserver.
-//
-$this->setJsExtern (array (
-                                '/jsf/scriptaculous/src/scriptaculous.js'
-                            )) ;
-
-//
-//  Array of 'local' javascripts to be included.
-//
-//  Script name must be relative to base of theme directory.
-//
-$this->setJsLocal (array (
-                            'script/interface.js'
-                        )) ;
-
-?>

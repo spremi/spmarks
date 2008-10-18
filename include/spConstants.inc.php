@@ -94,6 +94,38 @@ define ('ACT_USER_MOD',     'usr_mod') ;
 define ('ACT_USER_DEL',     'usr_del') ;
 
 /**
+ *  Sort order
+ */
+define ('ARG_SORT',         'sort') ;
+define ('ARG_SORT_ASC',     'asc') ;
+define ('ARG_SORT_DES',     'des') ;
+
+/**
+ *  Sort keys
+ */
+define ('ARG_KEY',          'key') ;
+define ('KEY_ID',           'id') ;
+define ('KEY_NAME',         'name') ;
+define ('KEY_DATE',         'date') ;
+define ('KEY_VISITS',       'visits') ;
+
+/**
+ *  Other GET/POST variables
+ */
+define ('ARG_BMARK_ID',     'bmId') ;
+define ('ARG_BMARK_CAT',    'bmCat') ;
+define ('ARG_BMARK_TITLE',  'bmTitle') ;
+define ('ARG_BMARK_URL',    'bmUrl') ;
+define ('ARG_BMARK_DESC',   'bmDesc') ;
+define ('ARG_BMARK_ORDER',  'bmOrder') ;
+define ('ARG_BMARK_FAV',    'bmFav') ;
+
+define ('ARG_BMCAT_ID',     'catId') ;
+define ('ARG_BMCAT_TITLE',  'catTitle') ;
+define ('ARG_BMCAT_DESC',   'catDesc') ;
+define ('ARG_BMCAT_ORDER',  'catOrder') ;
+
+/**
  *  Messages corresponding to successful execution.
  */
 $GLOBALS ['MsgSuccess'] = array (

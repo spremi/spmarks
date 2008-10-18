@@ -148,10 +148,12 @@ class CSpDatabase
         if (is_bool ($this->_dbResult)) {
             $retval = $this->_dbResult ;
 
-            if ($this->_dbResult === true)
+            if ($retval === true)
                 $this->addTrace ("Query returned success.") ;
-            else
+            else {
                 $this->addTrace ("Query returned failure.") ;
+                $this->addTrace ("[" . $this->_dbObj->error . "]") ;
+            }
         }
         elseif (is_object ($this->_dbResult)) {
             $this->addTrace ("Query returned an object.") ;

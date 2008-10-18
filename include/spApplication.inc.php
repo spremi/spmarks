@@ -168,9 +168,13 @@ class CSpApplication
 
         $this->_theme->assignVar  ('action', $this->_action) ;
 
-        $this->_theme->assignVar  ('arrCategories', $GLOBALS ['arrCategories']) ;
-        $this->_theme->assignVar  ('curCategory',   $GLOBALS ['curCategory']) ;
-        $this->_theme->assignVar  ('arrBookmarks',  $GLOBALS ['arrBookmarks']) ;
+        $this->_theme->assignVar  ('arrCategories', $GLOBALS ['ArrCategories']) ;
+        $this->_theme->assignVar  ('arrBookmarks',  $GLOBALS ['ArrBookmarks']) ;
+
+        $this->_theme->assignVar  ('curCategory',   $GLOBALS ['CurCategory']) ;
+
+        $this->_theme->assignVar  ('selCategory',   $GLOBALS ['SelCategory']) ;
+        $this->_theme->assignVar  ('selBookmark',   $GLOBALS ['SelBookmark']) ;
 
         /*
          *  AJAX variables

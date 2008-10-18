@@ -71,12 +71,16 @@ session_start ();
 //  ----------------------------------------------------------------------------
 //  Initialize Globals
 //  ----------------------------------------------------------------------------
-$GLOBALS ['Trace'] = null ;
-$GLOBALS ['App']   = null ;
+$GLOBALS ['Trace']          = null ;
+$GLOBALS ['App']            = null ;
 
-$GLOBALS ['arrCategories']  = array () ;
-$GLOBALS ['CurCategory']    = 0 ;
+$GLOBALS ['ArrCategories']  = array () ;
 $GLOBALS ['ArrBookmarks']   = array () ;
+
+$GLOBALS ['CurCategory']    = null ;
+
+$GLOBALS ['SelCategory']    = null ;
+$GLOBALS ['SelBookmark']    = null ;
 
 //  ----------------------------------------------------------------------------
 //  Instantiate the trace object

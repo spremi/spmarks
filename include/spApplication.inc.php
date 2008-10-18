@@ -258,10 +258,10 @@ class CSpApplication
         case ACT_TRACE :
             $this->addTrace ('Send application trace.') ;
 
-            if ($this->trace != null) {
+            if ($this->_trace != null) {
                 $this->_theme->render ('pgTrace.tpl')  ;
 
-                $this->trace->flush () ;
+                $this->_trace->flush () ;
             }
             break ;
 

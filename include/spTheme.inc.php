@@ -132,7 +132,7 @@ class CSpTheme
          *  Initialize trace object
          */
         if (defined ('__SP_TRACE')) {
-            $this->trace = CSpTrace::getInstance () ;
+            $this->_trace = CSpTrace::getInstance () ;
         }
 
         $this->addTrace (__FUNCTION__) ;
@@ -290,7 +290,7 @@ class CSpTheme
      */
     function addTrace ($str)
     {
-        if ((defined ('__SP_TRACE')) &&  ($this->_trace != null)) {
+        if ((defined ('__SP_TRACE')) &&  (!is_null($this->_trace))) {
             $this->_trace->add ("CSpTheme::" . $str) ;
         }
     }

@@ -101,7 +101,7 @@ class CSpDatabase
          *  Initialize trace object
          */
         if (defined ('__SP_TRACE')) {
-            $this->trace = CSpTrace::getInstance () ;
+            $this->_trace = CSpTrace::getInstance () ;
         }
 
         $this->addTrace (__FUNCTION__) ;

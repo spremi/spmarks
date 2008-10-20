@@ -37,6 +37,42 @@ defined ('__SP__MARKS__') or die (
     ) ;
 
 
+/*
+ *  Read additional GET arguments (if any)
+ *  Also, set defaults as necessary.
+ */
+if ($_SERVER ['REQUEST_METHOD'] === 'GET') {
+    if (isset ($_GET [ARG_BMCAT_ID])) {
+        $GLOBALS [ARG_BMCAT_ID] = urldecode ($_GET [ARG_BMCAT_ID]) ;
+    }
+}
+
+/*
+ *  Read additional POST arguments (if any)
+ *  Also, set defaults as necessary.
+ */
+if ($_SERVER ['REQUEST_METHOD'] === 'POST') {
+    if (isset ($_POST [ARG_BMCAT_ID])) {
+        $GLOBALS [ARG_BMCAT_ID] = urldecode ($_POST [ARG_BMCAT_ID]) ;
+    }
+
+    if (isset ($_POST [ARG_BMCAT_TITLE])) {
+        $GLOBALS [ARG_BMCAT_TITLE] = urldecode ($_POST [ARG_BMCAT_TITLE]) ;
+    }
+
+    if (isset ($_POST [ARG_BMCAT_DESC])) {
+        $GLOBALS [ARG_BMCAT_DESC] = urldecode ($_POST [ARG_BMCAT_DESC]) ;
+    }
+
+    if (isset ($_POST [ARG_BMCAT_ORDER])) {
+        $GLOBALS [ARG_BMCAT_ORDER] = urldecode ($_POST [ARG_BMCAT_ORDER]) ;
+    }
+    else {
+        $GLOBALS [ARG_BMCAT_ORDER] = "0" ;
+    }
+}
+
+
 /**
  *  Get list of categories from the database
  */

@@ -36,6 +36,82 @@ defined ('__SP__MARKS__') or die (
     '<p>You have tried to access restricted area.</p>'
     ) ;
 
+
+/*
+ *  Read additional GET arguments (if any)
+ *  Also, set defaults as necessary.
+ */
+if ($_SERVER ['REQUEST_METHOD'] === 'GET') {
+    if (isset ($_GET [ARG_BMARK_ID])) {
+        $GLOBALS [ARG_BMARK_ID] = urldecode ($_GET [ARG_BMARK_ID]) ;
+    }
+
+    if (isset ($_GET [ARG_BMARK_CAT])) {
+        $GLOBALS [ARG_BMARK_CAT] = urldecode ($_GET [ARG_BMARK_CAT]) ;
+    }
+
+    if (isset ($_GET [ARG_KEY])) {
+        $GLOBALS [ARG_KEY] = urldecode ($_GET [ARG_KEY]) ;
+    }
+    else {
+        // Default : Sort by ID
+        $GLOBALS [ARG_KEY] = KEY_ID ;
+    }
+
+    if (isset ($_GET [ARG_SORT])) {
+        $GLOBALS [ARG_SORT] = urldecode ($_GET [ARG_SORT]) ;
+    }
+    else {
+        // Default : Sort ascending
+        $GLOBALS [ARG_SORT] = ARG_SORT_ASC ;
+    }
+}
+
+
+/*
+ *  Read additional POST arguments (if any)
+ *  Also, set defaults as necessary.
+ */
+if ($_SERVER ['REQUEST_METHOD'] === 'POST') {
+    if (isset ($_POST [ARG_BMARK_ID])) {
+        $GLOBALS [ARG_BMARK_ID] = urldecode ($_POST [ARG_BMARK_ID]) ;
+    }
+
+    if (isset ($_POST [ARG_BMARK_CAT])) {
+        $GLOBALS [ARG_BMARK_CAT] = urldecode ($_POST [ARG_BMARK_CAT]) ;
+    }
+
+    if (isset ($_POST [ARG_BMARK_TITLE])) {
+        $GLOBALS [ARG_BMARK_TITLE] = urldecode ($_POST [ARG_BMARK_TITLE]) ;
+    }
+
+    if (isset ($_POST [ARG_BMARK_URL])) {
+        $GLOBALS [ARG_BMARK_URL] = urldecode ($_POST [ARG_BMARK_URL]) ;
+    }
+
+    if (isset ($_POST [ARG_BMARK_DESC])) {
+        $GLOBALS [ARG_BMARK_DESC] = urldecode ($_POST [ARG_BMARK_DESC]) ;
+    }
+
+    if (isset ($_POST [ARG_KEY])) {
+        $GLOBALS [ARG_KEY] = urldecode ($_POST [ARG_KEY]) ;
+    }
+    else {
+        // Default : Sort by ID
+        $GLOBALS [ARG_KEY] = KEY_ID ;
+    }
+
+    if (isset ($_POST [ARG_SORT])) {
+        $GLOBALS [ARG_SORT] = urldecode ($_POST [ARG_SORT]) ;
+    }
+    else {
+        // Default : Sort ascending
+        $GLOBALS [ARG_SORT] = ARG_SORT_ASC ;
+    }
+}
+
+
+
 /**
  *  Get list of bookmarks from the database
  */

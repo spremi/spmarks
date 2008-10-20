@@ -45,6 +45,7 @@ if (file_exists ('./config.inc.php')) {
     require_once ('./config.inc.php') ;
 }
 else {
+    require_once ('./include/spConstants.inc.php') ;
     require_once ('./include/spInstall.inc.php') ;
     exit () ;
 }

@@ -221,6 +221,8 @@ class CSpApplication
      */
     function init ()
     {
+        $retval = true ;
+
         $this->_initTrace () ;
 
         $retval = $this->_initConfig () ;
@@ -346,7 +348,7 @@ class CSpApplication
     /*
      *   Edit (add/modify/delete) a bookmark
      */
-    function _editBookmark ($post, $act)
+    function _editBookmark ($post)
     {
         $retval = true ;
 
@@ -357,6 +359,9 @@ class CSpApplication
             $this->_ajaxResult = editBookmark ($this->_db, $this->_action) ;
         }
         else {
+            listCategories ($this->_db) ;
+            getBookmark    ($this->_db) ;
+
             $this->_theme->render ('dlgBmEdit.tpl')  ;
         }
     }
@@ -364,14 +369,17 @@ class CSpApplication
     /*
      *  Edit (add/modify/delete) a category
      */
-    function _editCategory ($post, $act)
+    function _editCategory ($post)
     {
         $retval = true ;
 
         require_once ('./include/spCategory.inc.php') ;
+        if ($post) {
             $this->_ajaxResult = editCategory ($this->_db, $this->_action) ;
         }
         else {
+            getCategory ($this->_db) ;
+
             $this->_theme->render ('dlgCatEdit.tpl')  ;
         }
     }

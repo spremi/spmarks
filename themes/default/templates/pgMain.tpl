@@ -102,7 +102,7 @@
 <!-- Application -->
 <script
     type    = "text/javascript"
-    src     = "script/spAjax.js">
+    src     = "scripts/spAjax.js">
 </script>
 
 {if count ($theme->getJsTheme())}

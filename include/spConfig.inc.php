@@ -233,7 +233,7 @@ class CSpConfig
         $this->_title    = 'BookMARKS' ;
         $this->_theme    = 'default' ;
         $this->_language = 'en' ;
-        $this->_baseUrl  = 'http://localhost/test/bmark/' ;
+        $this->_baseUrl  = 'http://localhost/test/spmarks/' ;
 
         $this->_metaInfo = array (
                             'HTTP-EQUIV="Content-type" CONTENT="text/html; charset=UTF-8"',

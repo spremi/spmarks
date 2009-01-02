@@ -84,7 +84,7 @@ function hideMenu ()
 /**
  *  Toggles visibility of the menu
  */
-function toggleMenu (id)
+function doMenuToggle (id)
 {
     /*
      *  Ideally, one of these function should be used; but despite queueing,

@@ -226,7 +226,7 @@ function showMessage (msg, dur)
 {
     $('pgMessage').update (str) ;
 
-    Effect.appear ('pgMessage') ;
+    Effect.Appear ('pgMessage') ;
 
     setTimeout ("hideMessage ()", (dur * 1000)) ;
 }

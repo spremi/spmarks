@@ -138,12 +138,12 @@
 <div id="menuFilter" class="menuBox" style="display : none ;">
   <h2>Filters</h2>
   {strip}
-  <a href="#" onclick="toggleDescription ('bm'); return false;">
+  <a href="#" onclick="descToggle ('bm'); return false;">
   Toggle Bookmark Desc
   </a>
   {/strip}
   {strip}
-  <a href="#" onclick="toggleDescription ('cat'); return false;">
+  <a href="#" onclick="descToggle ('cat'); return false;">
   Toggle Category Desc
   </a>
   {/strip}
@@ -167,7 +167,7 @@
 <div id="menuHelp" class="menuBox" style="display : none ;">
   <h2>Help</h2>
   {strip}
-  <a href="#" onclick="toggleTrace (); return false;">
+  <a href="#" onclick="traceToggle (); return false;">
   Toggle Trace
   </a>
   {/strip}

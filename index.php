@@ -114,7 +114,6 @@ $GLOBALS ['Trace']->Add ('Create application object') ;
 $GLOBALS ['App'] =& new CSpApplication () ;
 
 $GLOBALS ['App']->init () ;
-$GLOBALS ['App']->openDB () ;
 
 //  ----------------------------------------------------------------------------
 //  Determine the requested action.
@@ -145,8 +144,6 @@ $GLOBALS ['App']->act ($choiceAction, $choicePost) ;
 //  ============================================================================
 //  End
 //  ============================================================================
-$GLOBALS ['App']->closeDB () ;
-
 $GLOBALS ['Trace']->Add ('End') ;
 ?>
 

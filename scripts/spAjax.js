@@ -56,7 +56,8 @@ const ACT_BMCAT_MOD = 'cat_mod' ;
 const ACT_BMCAT_DEL = 'cat_del' ;
 
 /**
- * Should the trace information be displayed on page load?
+ *  Should the trace information be displayed on page load?
+ *  TBD: Get this value via PHP (Configuration) 
  */
 const TRACE_ONLOAD  = true ;
 
@@ -214,18 +215,16 @@ function actionComplete (method, cmd, response)
             container = 'pgDialog' ;
             break ;
         }
+
+        showContainer (container, response) ;
     }
     else {
-        container = 'pgMessage' ;
+        showMessage (response, 5) ;
     }
-
-    $(container).innerHTML = response ;
-
-    showContainer (container) ;
 }
 
 //  ============================================================================
-//  Menu actions
+//  MENU
 //  ============================================================================
 
 /**
@@ -235,18 +234,86 @@ function actionComplete (method, cmd, response)
  *  @param  string  URL where the request should be sent
  *  @param  string  Requested operation.
  */
-function doMenuAction (op)
+function menuAction (op)
 {
-    var args = 'act=' + op ;
-
     if (typeof beforeMenuAction == 'function') {
         beforeMenuAction () ;
     }
 
-    doAction ('GET', op, args) ;
+    doAction ('GET', op, null) ;
 
     if (typeof afterMenuAction == 'function') {
         afterMenuAction () ;
+    }
+}
+
+/**
+ *  Toggle the menu visibility
+ */
+function menuToggle ()
+{
+    if (typeof beforeMenuToggle == 'function') {
+        beforeMenuToggle () ;
+    }
+
+    doMenuToggle () ;
+
+    if (typeof afterMenuToggle == 'function') {
+        afterMenuToggle () ;
+    }
+}
+
+
+//  ============================================================================
+//  DESCRIPTION
+//  ============================================================================
+
+/**
+ *  Toggle the visibility of textual description of the elements
+ *
+ *  @param  string  Element type - bookmark or category
+ */
+function descToggle (eltype)
+{
+    var arr = null ;
+
+    if (eltype == 'bm') {
+        arr = $('pgBookmarks').select ('p.desc') ;
+    }
+    else if (eltype == 'cat') {
+        arr = $('pgCategories').select ('p.desc') ;
+    }
+
+    if (arr != null) {
+        if (typeof beforeDescToggle == 'function') {
+            beforeDescToggle () ;
+        }
+
+        doDescToggle (arr) ;
+
+        if (typeof afterDescToggle == 'function') {
+            afterDescToggle () ;
+        }
+    }
+}
+
+//  ============================================================================
+//  TRACE
+//  ============================================================================
+
+/**
+ *  Toggle the visibility of trace container
+ */
+function traceToggle ()
+{
+    if (typeof beforeTraceToggle == 'function') {
+        beforeTraceToggle () ;
+    }
+
+    doTraceToggle () ;
+
+    if (typeof afterToggle == 'function') {
+        afterTraceToggle () ;
     }
 }
 

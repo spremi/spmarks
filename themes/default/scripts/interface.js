@@ -45,7 +45,7 @@ function showContainer (c, str)
 {
     $(c).update (str) ;
 
-    Effect.appear (c) ;
+    Effect.Appear (c) ;
 }
 
 //  ----------------------------------------------------------------------------

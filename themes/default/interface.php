@@ -69,16 +69,25 @@ $this->setStyleSheets (array (
 //  Script name must be relative to base URL of the webserver.
 //
 $this->setJsExtern (array (
+                                '/jsf/prototype/prototype.js'
                                 '/jsf/scriptaculous/src/scriptaculous.js'
                             )) ;
 
 //
 //  Array of 'local' javascripts to be included.
 //
-//  Script name must be relative to base of theme directory.
+//  These scripts are expected to be in 'scripts' directory of application.
 //
 $this->setJsLocal (array (
-                            'script/interface.js'
+                        )) ;
+//
+//  Array of 'theme specific' javascripts to be included.
+//
+//  These scripts are expected to be in 'scripts' directory of theme.
+//
+$this->setJsTheme (array (
+                            'interface.js'
                         )) ;
 
 ?>
+

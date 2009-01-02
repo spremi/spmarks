@@ -76,9 +76,17 @@ class CSpTheme
 
     /**
      *  Local Javascript(s) used
-     *  These javascripts are contained in the theme.
+     *  These javascripts are contained in the application's script directory.
+     *  Local copies of required scripts e.g. prototype.js and scriptaculous.js
+     *  can be copied here.
      */
     private $_jsLocal = array () ;
+
+    /**
+     *  Theme specific Javascript(s) used
+     *  These javascripts are contained in the theme.
+     */
+    private $_jsTheme = array () ;
 
     /**
      *  Instance of the smarty template system.
@@ -226,7 +234,7 @@ class CSpTheme
      */
     function setDir ($arg)
     {
-        $this->_dir = './themes/' . $arg  . '/' ;
+        $this->_dir = './themes/' . $arg ;
     }
 
     /**
@@ -246,7 +254,7 @@ class CSpTheme
     }
 
     /**
-     *  Get external java scripts used
+     *  Get external javascripts used
      */
     function getJsExtern ()
     {
@@ -254,7 +262,7 @@ class CSpTheme
     }
 
     /**
-     *  Set external java scripts used
+     *  Set external javascripts used
      */
     function setJsExtern ($arg)
     {
@@ -262,7 +270,7 @@ class CSpTheme
     }
 
     /**
-     *  Get local java scripts used
+     *  Get local javascripts used
      */
     function getJsLocal ()
     {
@@ -270,11 +278,27 @@ class CSpTheme
     }
 
     /**
-     *  Set local java scripts used
+     *  Set local javascripts used
      */
     function setJsLocal ($arg)
     {
         $this->_jsLocal = $arg ;
+    }
+
+    /**
+     *  Get theme specific javascripts used
+     */
+    function getJsTheme ()
+    {
+        return $this->_jsTheme ;
+    }
+
+    /**
+     *  Set theme specific javascripts used
+     */
+    function setJsTheme ($arg)
+    {
+        $this->_jsTheme = $arg ;
     }
 
     /**

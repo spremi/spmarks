@@ -75,35 +75,48 @@
  *  Javascript(s)
  *  ============================================================================
  *}
+{if count ($theme->getJsExtern())}
+<!-- External -->
+  {foreach
+    from  = $theme->getJsExtern()
+    item  = js}
 <script
     type    = "text/javascript"
-    src     = "script/prototype.js">
+    src     = "{$js}">
 </script>
+  {/foreach}
+{/if}
 
+{if count ($theme->getJsLocal())}
+<!-- Local -->
+  {foreach
+    from  = $theme->getJsLocal()
+    item  = js}
+<script
+    type    = "text/javascript"
+    src     = "./scripts/{$js}">
+</script>
+  {/foreach}
+{/if}
+
+<!-- Application -->
 <script
     type    = "text/javascript"
     src     = "script/spAjax.js">
 </script>
 
-<!-- External -->
-{foreach
-  from  = $theme->getJsExtern()
-  item  = js}
+{if count ($theme->getJsTheme())}
+<!-- Theme -->
+  {foreach
+    from  = $theme->getJsTheme()
+    item  = js}
 <script
     type    = "text/javascript"
-    src     = "{$js}">
+    src     = "{$theme->getDir()}/scripts/{$js}">
 </script>
-{/foreach}
+  {/foreach}
+{/if}
 
-<!-- Internal -->
-{foreach
-  from  = $theme->getJsLocal()
-  item  = js}
-<script
-    type    = "text/javascript"
-    src     = "{$theme->getDir()}/{$js}">
-</script>
-{/foreach}
 
 {*  ============================================================================
  *  Fix PNG transparency issue.

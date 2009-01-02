@@ -263,10 +263,11 @@ Event.observe (
                         beforePageLoad () ;
                     }
 
-                    doAction ('GET', 'bm_lst', 'act=bm_lst') ;
+                    doAction ('GET', ACT_BMCAT_LST, null) ;
+                    doAction ('GET', ACT_BMARK_LST, null) ;
 
                     if (TRACE_ONLOAD) {
-                        doAction ('GET', 'trace', 'act=trace') ;
+                        doAction ('GET', ACT_TRACE, null) ;
                     }
 
                     if (typeof afterPageLoad == 'function') {

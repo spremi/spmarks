@@ -55,6 +55,9 @@ const ACT_BMCAT_ADD = 'cat_add' ;
 const ACT_BMCAT_MOD = 'cat_mod' ;
 const ACT_BMCAT_DEL = 'cat_del' ;
 
+/**
+ * Should the trace information be displayed on page load?
+ */
 const TRACE_ONLOAD  = true ;
 
 
@@ -71,7 +74,6 @@ const TRACE_ONLOAD  = true ;
  *  @param  string  Requested operation (Passed to the callback function).
  *  @param  string  Arguments
  */
-
 function doAction (sm, url, op, args)
 {
     var req = new Ajax.Request (

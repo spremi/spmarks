@@ -69,7 +69,7 @@ $this->setStyleSheets (array (
 //  Script name must be relative to base URL of the webserver.
 //
 $this->setJsExtern (array (
-                                '/jsf/prototype/prototype.js'
+                                '/jsf/prototype/prototype.js',
                                 '/jsf/scriptaculous/src/scriptaculous.js'
                             )) ;
 

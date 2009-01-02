@@ -374,6 +374,7 @@ class CSpApplication
         $retval = true ;
 
         require_once ('./include/spCategory.inc.php') ;
+
         if ($post) {
             $this->_ajaxResult = editCategory ($this->_db, $this->_action) ;
         }

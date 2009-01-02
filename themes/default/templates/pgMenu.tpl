@@ -172,7 +172,7 @@
   </a>
   {/strip}
   {strip}
-  <a href="#" onclick="showContainer ('pgAbout'); return false;">
+  <a href="#" onclick="showAbout (); return false;">
   About
   </a>
   {/strip}

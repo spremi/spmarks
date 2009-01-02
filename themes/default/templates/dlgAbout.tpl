@@ -41,5 +41,5 @@ It is avaliable under the MIT License.
 </p>
 
 <div class="button">
-<a href="#" onclick="Effect.Fade('pgAbout'); return false;">OK</a>
+<a href="#" onclick="hideAbout (); return false;">OK</a>
 </div>

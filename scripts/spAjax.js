@@ -249,14 +249,16 @@ function menuAction (op)
 
 /**
  *  Toggle the menu visibility
+ *
+ *  @param  string  Menu ID
  */
-function menuToggle ()
+function menuToggle (m)
 {
     if (typeof beforeMenuToggle == 'function') {
         beforeMenuToggle () ;
     }
 
-    doMenuToggle () ;
+    doMenuToggle (m) ;
 
     if (typeof afterMenuToggle == 'function') {
         afterMenuToggle () ;

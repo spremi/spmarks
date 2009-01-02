@@ -40,6 +40,8 @@
 /**
  *  Update the contents of container and make it visible.
  *
+ *  @param  string  Container ID
+ *  @param  string  New content to be displayed in the container
  */
 function showContainer (c, str)
 {
@@ -59,8 +61,11 @@ var curMenu = null ;
 
 /**
  *  Shows specified visible menu.
- *  - Sets global variable 'curMenu'.
- **/
+ *
+ *  @param  string  Menu  ID
+ *
+ *  Sets global variable 'curMenu'.
+ */
 function showMenu (id)
 {
     curMenu = id ;
@@ -69,7 +74,8 @@ function showMenu (id)
 
 /**
  *  Hides currently visible menu.
- *  - Resets global variable 'curMenu'.
+ *
+ *  Resets global variable 'curMenu'.
  */
 function hideMenu ()
 {
@@ -83,6 +89,8 @@ function hideMenu ()
 
 /**
  *  Toggles visibility of the menu
+ *
+ *  @param  string  Menu  ID
  */
 function doMenuToggle (id)
 {
@@ -130,6 +138,8 @@ function afterMenuAction ()
 
 /**
  *  Toggles visibility of the textual description of specified elements
+ *
+ *  @param  array   Elements to be toggled.
  */
 function doDescToggle (arr)
 {
@@ -194,7 +204,7 @@ function afterTraceToggle ()
  */
 function beforeFormSubmit ()
 {
-    Effect.fade ('pgDialog') ;
+    Effect.Fade ('pgDialog') ;
 }
 
 
@@ -219,8 +229,10 @@ function errFormSubmit ()
 //  ----------------------------------------------------------------------------
 
 /**
- *  Show message panel for specific duration (in secs).
+ *  Show message panel for specific duration.
  *
+ *  @param  string  Message to be displayed
+ *  @param  number  Duration (in secs)
  */
 function showMessage (msg, dur)
 {
@@ -237,6 +249,26 @@ function showMessage (msg, dur)
  */
 function hideMessage ()
 {
-    Effect.fade ('pgMessage') ;
+    Effect.Fade ('pgMessage') ;
+}
+
+//  ----------------------------------------------------------------------------
+//  ABOUT
+//  ----------------------------------------------------------------------------
+
+/**
+ *  Hide 'about' dialog
+ */
+function hideAbout ()
+{
+    Effect.Fade ('pgAbout') ;
+}
+
+/**
+ *  Show 'about' dialog
+ */
+function showAbout ()
+{
+    Effect.Appear ('pgAbout') ;
 }
 

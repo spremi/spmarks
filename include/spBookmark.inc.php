@@ -111,16 +111,83 @@ if ($_SERVER ['REQUEST_METHOD'] === 'POST') {
 }
 
 
+/**
+ *  Get a specific bookmark from database
+ */
+function getBookmark (&$db)
+{
+    $ret = true ;
+
+    $GLOBALS ['Trace']->Add (__FUNCTION__) ;
+
+    $str  = "SELECT * FROM `bmark` " ;
+    $str .= "WHERE `id`='" . $GLOBALS [ARG_BMARK_ID] . "'" ;
+
+    $GLOBALS ['Trace']->Add ("SQL: " . $str) ;
+
+    $ret = $db->query ($str) ;
+    if ($ret == true) {
+        while ($row = $db->nextRow ()) {
+            $GLOBALS ['SelBookmark'] = array (
+                                            "id"    => $row->id,
+                                            "catId" => $row->category,
+                                            "title" => $row->title,
+                                            "link"  => $row->url,
+                                            "desc"  => $row->desc);
+        }
+
+        $db->flush () ;
+    }
+    else {
+        $GLOBALS ['Trace']->Add ("Unable to get list of bookmarks from database") ;
+    }
+
+    return $ret ;
+}
+
 
 /**
  *  Get list of bookmarks from the database
  */
 function listBookmarks (&$db)
 {
-    $ret      = true ;
+    $ret = true ;
 
     $GLOBALS ['Trace']->Add (__FUNCTION__) ;
 
+    /*
+     *  Create SQL query
+     */
+    $str = "SELECT * FROM `bmark` " ;
+
+    if (isset ($GLOBALS [ARG_BMARK_CAT])) {
+        $str .= "WHERE `category`='" . $GLOBALS [ARG_BMARK_CAT] . "' " ;
+    }
+
+    $str .= "ORDER BY '" . $GLOBALS [ARG_KEY] . "' " . $GLOBALS [ARG_SORT] ;
+
+    $GLOBALS ['Trace']->Add ("SQL: " . $str) ;
+
+    /*
+     *  Execute the query
+     */
+    $ret = $db->query ($str) ;
+    if ($ret == true) {
+        while ($row = $db->nextRow ()) {
+            $GLOBALS ['ArrBookmarks'][] = array ("id"    => $row->id,
+                                                 "catId" => $row->category,
+                                                 "title" => $row->title,
+                                                 "link"  => $row->url,
+                                                 "desc"  => $row->desc);
+        }
+
+        $db->flush () ;
+    }
+    else {
+        $GLOBALS ['Trace']->Add ("Unable to get list of bookmarks from database") ;
+    }
+
+    return $ret ;
 }
 
 /**
@@ -128,9 +195,42 @@ function listBookmarks (&$db)
  */
 function editBookmark (&$db, $op)
 {
-    $ret      = true ;
+    $ret = true ;
 
     $GLOBALS ['Trace']->Add (__FUNCTION__) ;
+
+    switch ($op)
+    {
+    case ACT_BMARK_ADD :
+        $query  = "INSERT INTO `bmark` (`category` , `title` , `url`, `desc` )" ;
+        $query .= "VALUES (" ;
+        $query .= "'" . $db->escapeStr ($GLOBALS [ARG_BMARK_CAT])    . "', " ;
+        $query .= "'" . $db->escapeStr ($GLOBALS [ARG_BMARK_TITLE])  . "', " ;
+        $query .= "'" . $db->escapeStr ($GLOBALS [ARG_BMARK_URL])    . "', " ;
+        $query .= "'" . $db->escapeStr ($GLOBALS [ARG_BMARK_DESC])   . "');" ;
+        break ;
+
+    case ACT_BMARK_MOD :
+        $query  = "UPDATE `bmark` " ;
+        $query .= "SET " ;
+        $query .= "`category`='" . $db->escapeStr ($GLOBALS [ARG_BMARK_CAT])   . "', " ;
+        $query .= "`title`='"    . $db->escapeStr ($GLOBALS [ARG_BMARK_TITLE]) . "', " ;
+        $query .= "`url`='"      . $db->escapeStr ($GLOBALS [ARG_BMARK_URL])   . "', " ;
+        $query .= "`desc`='"     . $db->escapeStr ($GLOBALS [ARG_BMARK_DESC])  . "' " ;
+        $query .= "WHERE " ;
+        $query .= "`id`='"       . $db->escapeStr ($GLOBALS [ARG_BMARK_ID])    . "'" ;
+        break ;
+
+    case ACT_BMARK_DEL :
+        break ;
+
+    default :
+        break ;
+    }
+
+    $GLOBALS ['Trace']->Add ("SQL: " . $query) ;
+
+    $ret = $db->query ($query) ;
 
     return $ret ;
 }

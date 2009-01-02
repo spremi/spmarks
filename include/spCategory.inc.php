@@ -74,14 +74,70 @@ if ($_SERVER ['REQUEST_METHOD'] === 'POST') {
 
 
 /**
+ *  Get a specific category from database
+ */
+function getCategory (&$db)
+{
+    $ret = true ;
+
+    $GLOBALS ['Trace']->Add (__FUNCTION__) ;
+
+    $str  = "SELECT * FROM `categories` " ;
+    $str .= "WHERE `id`='" . $GLOBALS [ARG_BMCAT_ID] . "'" ;
+
+    $GLOBALS ['Trace']->Add ("SQL: " . $str) ;
+
+    $ret = $db->query ($str) ;
+    if ($ret == true) {
+        while ($row = $db->nextRow ()) {
+            $GLOBALS ['SelCategory'] = array (
+                                            "id"    => $row->id,
+                                            "title" => $row->title,
+                                            "desc"  => $row->desc,
+                                            "order" => $row->order);
+        }
+
+        $db->flush () ;
+    }
+    else {
+        $GLOBALS ['Trace']->Add ("Unable to get list of categories from database") ;
+    }
+
+    return $ret ;
+}
+
+
+/**
  *  Get list of categories from the database
  */
 function listCategories (&$db)
 {
-    $ret      = true ;
+    $ret = true ;
 
     $GLOBALS ['Trace']->Add (__FUNCTION__) ;
 
+    $str = "SELECT * FROM `categories` ORDER BY `id` ASC" ;
+
+    $ret = $db->query ($str) ;
+
+    if ($ret == true) {
+        $GLOBALS ['ArrCategories'] = array () ;
+
+        while ($row = $db->nextRow ()) {
+            $GLOBALS ['ArrCategories'][] = array (
+                                                "id"    => $row->id,
+                                                "title" => $row->title,
+                                                "desc"  => $row->desc,
+                                                "order" => $row->order);
+        }
+
+        $db->flush () ;
+    }
+    else {
+        $GLOBALS ['Trace']->Add ("Unable to get list of categories from database") ;
+    }
+
+    return $ret ;
 }
 
 /**
@@ -89,9 +145,40 @@ function listCategories (&$db)
  */
 function editCategory (&$db, $op)
 {
-    $ret      = true ;
+    $ret = true ;
 
     $GLOBALS ['Trace']->Add (__FUNCTION__) ;
+
+    switch ($op)
+    {
+    case ACT_BMCAT_ADD :
+        $query  = "INSERT INTO `categories` (`title` , `desc` , `order` )" ;
+        $query .= "VALUES (" ;
+        $query .= "'" . $db->escapeStr ($GLOBALS [ARG_BMCAT_TITLE]) . "', " ;
+        $query .= "'" . $db->escapeStr ($GLOBALS [ARG_BMCAT_DESC])  . "', " ;
+        $query .= "'" . $db->escapeStr ($GLOBALS [ARG_BMCAT_ORDER]) . "');" ;
+        break ;
+
+    case ACT_BMCAT_MOD :
+        $query  = "UPDATE `categories` " ;
+        $query .= "SET " ;
+        $query .= "`title`='" . $db->escapeStr ($GLOBALS [ARG_BMCAT_TITLE]) . "', " ;
+        $query .= "`desc`='"  . $db->escapeStr ($GLOBALS [ARG_BMCAT_DESC])  . "', " ;
+        $query .= "`order`='" . $db->escapeStr ($GLOBALS [ARG_BMCAT_ORDER]) . "' " ;
+        $query .= "WHERE " ;
+        $query .= "`id`='"  . $db->escapeStr ($GLOBALS [ARG_BMCAT_ID]) . "'" ;
+        break ;
+
+    case ACT_BMCAT_DEL :
+        break ;
+
+    default :
+        break ;
+    }
+
+    $GLOBALS ['Trace']->Add ("SQL: " . $query) ;
+
+    $ret = $db->query ($query) ;
 
     return $ret ;
 }

@@ -70,17 +70,32 @@ const TRACE_ONLOAD  = true ;
  *  callback function implemented by the theme.
  *
  *  @param  string  Method - GET | POST
- *  @param  string  URL where the request should be sent
  *  @param  string  Requested operation (Passed to the callback function).
- *  @param  string  Arguments
+ *  @param  string  Arguments (optional)
  */
-function doAction (sm, url, op, args)
+function doAction (sm, op, args)
 {
+    var strArg ;
+
+    if (sm == 'GET') {
+        if (args == null) {
+            strArg = 'act=' + op ;
+        }
+        else {
+            strArg = 'act=' + op + '&' + args ;
+        }
+    }
+    else {
+        if (args != null) {
+            strArgs = args ;
+        }
+    }
+
     var req = new Ajax.Request (
-                    url,
+                    'index.php',
                     {
                         method    : sm,
-                        parameters: args,
+                        parameters: strArg,
                         onSuccess : function (transport)
                                     {
                                         // This function is implemented by the
@@ -154,14 +169,13 @@ function doForm (name)
 
     if (valid)
     {
-        var url  = 'index.php?act=' + cmd ;
         var args = $(form).serialize (true) ;
 
         if (typeof beforeFormSubmit == 'function') {
             beforeFormSubmit () ;
         }
 
-        doAction ('POST', url, cmd, args) ;
+        doAction ('POST', cmd, args) ;
 
         if (typeof afterFormSubmit == 'function') {
             afterFormSubmit () ;
@@ -221,7 +235,7 @@ function actionComplete (method, cmd, response)
  *  @param  string  URL where the request should be sent
  *  @param  string  Requested operation.
  */
-function doMenuAction (url, op)
+function doMenuAction (op)
 {
     var args = 'act=' + op ;
 
@@ -229,7 +243,7 @@ function doMenuAction (url, op)
         beforeMenuAction () ;
     }
 
-    doAction ('GET', url, op, args) ;
+    doAction ('GET', op, args) ;
 
     if (typeof afterMenuAction == 'function') {
         afterMenuAction () ;
@@ -249,10 +263,10 @@ Event.observe (
                         beforePageLoad () ;
                     }
 
-                    doAction ('GET', 'index.php', 'bm_lst', 'act=bm_lst') ;
+                    doAction ('GET', 'bm_lst', 'act=bm_lst') ;
 
                     if (TRACE_ONLOAD) {
-                        doAction ('GET', 'index.php', 'trace', 'act=trace') ;
+                        doAction ('GET', 'trace', 'act=trace') ;
                     }
 
                     if (typeof afterPageLoad == 'function') {

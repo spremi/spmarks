@@ -38,6 +38,16 @@
 //  ----------------------------------------------------------------------------
 
 /**
+ *  Hide specified container.
+ *
+ *  @param  string  Container ID
+ */
+function hideContainer (c)
+{
+    Effect.Fade (c) ;
+}
+
+/**
  *  Update the contents of container and make it visible.
  *
  *  @param  string  Container ID
@@ -184,6 +194,7 @@ function doTraceToggle ()
  */
 function beforeTraceToggle ()
 {
+    hideMenu () ;
 }
 
 
@@ -204,7 +215,7 @@ function afterTraceToggle ()
  */
 function beforeFormSubmit ()
 {
-    Effect.Fade ('pgDialog') ;
+    hideDialog () ;
 }
 
 
@@ -253,6 +264,18 @@ function hideMessage ()
 }
 
 //  ----------------------------------------------------------------------------
+//  DIALOGS
+//  ----------------------------------------------------------------------------
+
+/**
+ *  Hide dialog
+ */
+function hideDialog ()
+{
+    Effect.Fade ('pgDialog') ;
+}
+
+//  ----------------------------------------------------------------------------
 //  ABOUT
 //  ----------------------------------------------------------------------------
 
@@ -269,6 +292,7 @@ function hideAbout ()
  */
 function showAbout ()
 {
+    hideMenu () ;
     Effect.Appear ('pgAbout') ;
 }
 

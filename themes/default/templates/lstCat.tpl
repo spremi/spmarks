@@ -26,6 +26,9 @@
  *  IN THE SOFTWARE.
  *  ============================================================================
  *}
+<div class="close">
+  <a href="#" onclick="hideContainer ('pgCategories'); return false;">X</a>
+</div>
 
 <h2>Categories</h2>
 

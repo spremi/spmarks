@@ -26,6 +26,4 @@
  *  IN THE SOFTWARE.
  *  ============================================================================
  *}
-<p>
-spMARKS - A Web 2.0 Bookmark Management System
-</p>
+<h1>spMARKS - A Web 2.0 Bookmark Management System</h1>

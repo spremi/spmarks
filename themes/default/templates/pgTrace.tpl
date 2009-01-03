@@ -26,11 +26,17 @@
  *  IN THE SOFTWARE.
  *  ============================================================================
  *}
-<h2 class="traceHdr">DEBUG TRACE</h2>
-<pre class="traceContent">
+<div class="close">
+  <a href="#" onclick="hideContainer ('pgTrace'); return false;">X</a>
+</div>
+
+<h2>DEBUG TRACE</h2>
+
+<pre>
 {foreach
   from  = $trace->export()
   item  = str}
 &raquo; {$str}<br />
 {/foreach}
 </pre>
+

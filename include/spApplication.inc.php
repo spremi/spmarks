@@ -360,7 +360,9 @@ class CSpApplication
         }
         else {
             listCategories ($this->_db) ;
-            getBookmark    ($this->_db) ;
+	    if ($this->_action !== ACT_BMARK_ADD) {
+                getBookmark ($this->_db) ;
+            }
 
             $this->_theme->render ('dlgBmEdit.tpl')  ;
         }
@@ -379,7 +381,9 @@ class CSpApplication
             $this->_ajaxResult = editCategory ($this->_db, $this->_action) ;
         }
         else {
-            getCategory ($this->_db) ;
+	    if ($this->_action !== ACT_BMCAT_ADD) {
+                getCategory ($this->_db) ;
+            }
 
             $this->_theme->render ('dlgCatEdit.tpl')  ;
         }

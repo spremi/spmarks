@@ -26,7 +26,7 @@
  *  IN THE SOFTWARE.
  *  ============================================================================
  *}
-<h2>TBD: Add category title here</h2>
+<h2>{$selCategory.title}</h2>
 
 {*  ============================================================================
  *  Bookmarks in the current category

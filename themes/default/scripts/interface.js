@@ -296,3 +296,23 @@ function showAbout ()
     Effect.Appear ('pgAbout') ;
 }
 
+//  ----------------------------------------------------------------------------
+//  CATEGORY SELECTION
+//  ----------------------------------------------------------------------------
+
+/**
+ *  Visual hook called before category is selected
+ */
+function beforeSelCategory ()
+{
+    hideContainer ('pgCategories') ;
+}
+
+
+/**
+ *  Visual hook called after category has been selected
+ */
+function afterSelCategory ()
+{
+}
+

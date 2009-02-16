@@ -338,6 +338,29 @@ function traceToggle ()
     }
 }
 
+//  ============================================================================
+//  SELECT CATEGORY
+//  ============================================================================
+
+
+/**
+ *  Selects the category chosen by the user.
+ *
+ *  @param  string  Category ID
+ */
+function selCategory (id)
+{
+    if (typeof beforeSelCategory == 'function') {
+        beforeSelCategory () ;
+    }
+
+    doAction ('GET', ACT_BMARK_LST, ARG_BMARK_CAT + '=' + id) ;
+
+    if (typeof afterSelCategory == 'function') {
+        afterSelCategory () ;
+    }
+}
+
 
 //  ============================================================================
 //  Actions when the page is loaded

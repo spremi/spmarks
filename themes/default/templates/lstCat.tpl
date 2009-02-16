@@ -39,7 +39,7 @@
   <li>
   <a class="mod" style="display : none ;" href="#" onclick="doButton ('cat_mod', '{$cat.id}'); return false;">MOD</a>
   <a class="del" style="display : none ; "href="#" onclick="doButton ('cat_del', '{$cat.id}'); return false;">DEL</a>
-  <a href="#" onclick="doCategorySel ('{$cat.id}'); return false;">{$cat.title}</a>
+  <a href="#" onclick="selCategory ('{$cat.id}'); return false;">{$cat.title}</a>
   <p class="desc">{$cat.desc}</p>
   </li>
   {/foreach}

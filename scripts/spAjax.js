@@ -55,6 +55,25 @@ const ACT_BMCAT_ADD = 'cat_add' ;
 const ACT_BMCAT_MOD = 'cat_mod' ;
 const ACT_BMCAT_DEL = 'cat_del' ;
 
+
+const ACT_BMCAT_LST     = 'cat_lst' ;
+const ACT_BMCAT_ADD     = 'cat_add' ;
+const ACT_BMCAT_MOD     = 'cat_mod' ;
+const ACT_BMCAT_DEL     = 'cat_del' ;
+
+const ARG_BMARK_ID      =  'bmId' ;
+const ARG_BMARK_CAT     =  'bmCat' ;
+const ARG_BMARK_TITLE   =  'bmTitle' ;
+const ARG_BMARK_URL     =  'bmUrl' ;
+const ARG_BMARK_DESC    =  'bmDesc' ;
+const ARG_BMARK_ORDER   =  'bmOrder' ;
+const ARG_BMARK_FAV     =  'bmFav' ;
+
+const ARG_BMCAT_ID      = 'catId' ;
+const ARG_BMCAT_TITLE   = 'catTitle' ;
+const ARG_BMCAT_DESC    = 'catDesc' ;
+const ARG_BMCAT_ORDER   = 'catOrder' ;
+
 /**
  *  Should the trace information be displayed on page load?
  *  TBD: Get this value via PHP (Configuration) 

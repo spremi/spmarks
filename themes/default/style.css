@@ -53,33 +53,35 @@
  *  Generic styles
  *  ============================================================================
  */
-a
-{
-    text-decoration     : none ;
-    outline             : none ;
-}
-
 h1
 {
-    font-size           : 1.4em ;
+    padding             : 5px ;
+
+    font-size           : 1.2em ;
     font-weight         : bold ;
 }
 
 h2
 {
-    font-size           : 1.2em ;
+    padding             : 5px ;
+
+    font-size           : 1.0em ;
     font-weight         : bold ;
 }
 
 h3
 {
-    font-size           : 1.0em ;
+    padding             : 2px ;
+
+    font-size           : 0.9em ;
     font-weight         : bold ;
 }
 
 h4
 {
-    font-size           : 0.9em ;
+    padding             : 2px ;
+
+    font-size           : 0.8em ;
     font-weight         : bold ;
 }
 
@@ -109,6 +111,18 @@ table
  *  Anchors
  *  ----------------------------------------------------------------------------
  */
+a,
+a:link,
+a:visited,
+a:active
+{
+    text-decoration     : none ;
+    outline             : none ;
+}
+
+a:hover
+{
+}
 
 /*  ============================================================================
  *  Page header
@@ -253,3 +267,36 @@ table
 {
     color               : #FF5B00 ;
 }
+
+/*  ============================================================================
+ *  Buttons
+ *  ============================================================================
+ */
+div.button
+{
+}
+
+div.button a
+{
+}
+
+div.button a:hover
+{
+}
+
+/*  ----------------------------------------------------------------------------
+ *  Close button for containers
+ *  ----------------------------------------------------------------------------
+ */
+.close
+{
+}
+
+.close a
+{
+}
+
+.close a:hover
+{
+}
+

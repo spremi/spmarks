@@ -74,16 +74,16 @@ if ($_SERVER ['REQUEST_METHOD'] === 'POST') {
 
 
 /**
- *  Get a specific category from database
+ *  Get a specific category from database. Modifies $GLOBALS ['SelCategory'].
  */
-function getCategory (&$db)
+function getCategory (&$db, $argId)
 {
     $ret = true ;
 
     $GLOBALS ['Trace']->Add (__FUNCTION__) ;
 
     $str  = "SELECT * FROM `categories` " ;
-    $str .= "WHERE `id`='" . $GLOBALS [ARG_BMCAT_ID] . "'" ;
+    $str .= "WHERE `id`='" . $argId . "'" ;
 
     $GLOBALS ['Trace']->Add ("SQL: " . $str) ;
 

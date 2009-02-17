@@ -328,6 +328,13 @@ class CSpApplication
         require_once ('./include/spCategory.inc.php') ;
         require_once ('./include/spBookmark.inc.php') ;
 
+        if (isset ($_GET [ARG_BMARK_CAT])) {
+            $GLOBALS ['CurCategory'] = $_GET [ARG_BMARK_CAT] ;
+        }
+
+        getCategory ($this->_db, $GLOBALS ['CurCategory']) ;
+
+
         $result = listBookmarks ($this->_db) ;
 
         $this->_theme->render ('lstBm.tpl')  ;
@@ -361,7 +368,7 @@ class CSpApplication
         else {
             listCategories ($this->_db) ;
 	    if ($this->_action !== ACT_BMARK_ADD) {
-                getBookmark ($this->_db) ;
+                getBookmark ($this->_db, $GLOBALS [ARG_BMARK_ID]) ;
             }
 
             $this->_theme->render ('dlgBmEdit.tpl')  ;
@@ -382,7 +389,8 @@ class CSpApplication
         }
         else {
 	    if ($this->_action !== ACT_BMCAT_ADD) {
-                getCategory ($this->_db) ;
+                getCategory ($this->_db, $GLOBALS [ARG_BMCAT_ID]) ;
+
             }
 
             $this->_theme->render ('dlgCatEdit.tpl')  ;

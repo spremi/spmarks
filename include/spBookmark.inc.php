@@ -112,16 +112,16 @@ if ($_SERVER ['REQUEST_METHOD'] === 'POST') {
 
 
 /**
- *  Get a specific bookmark from database
+ *  Get a specific bookmark from database. Modifies $GLOBALS ['SelBookmark'].
  */
-function getBookmark (&$db)
+function getBookmark (&$db, $argId)
 {
     $ret = true ;
 
     $GLOBALS ['Trace']->Add (__FUNCTION__) ;
 
     $str  = "SELECT * FROM `bmark` " ;
-    $str .= "WHERE `id`='" . $GLOBALS [ARG_BMARK_ID] . "'" ;
+    $str .= "WHERE `id`='" . $argId . "'" ;
 
     $GLOBALS ['Trace']->Add ("SQL: " . $str) ;
 
